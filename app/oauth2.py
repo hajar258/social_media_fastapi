@@ -46,10 +46,9 @@ def verify_access_token(token: str, credentials_exception):
             raise credentials_exception
 
         token_data = schemas.TokenData(id=id)
+        return token_data
     except JWTError:
         raise credentials_exception
-
-    return token_data
 
 
 # take the token from the request automtically, verify if the token is correct or not using "verify_access_token" method, extract the id for us, then we can automatically fetch the user from database and then add as parmeter
@@ -60,7 +59,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Could not validate credintials", headers={"WWW-Authenticte": "Bearer"})
 
     # here we can retrieve the data of the current user from db
-    token = verify_access_token(token, create_access_token)
+    token = verify_access_token(token, credentials_exception)
 
     user = db.query(models.User).filter(models.User.id == token.id).first()
     return user
