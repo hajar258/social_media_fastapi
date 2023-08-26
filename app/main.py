@@ -36,4 +36,4 @@ app.include_router(vote.router)
 @app.get("/")
 # this is a function,
 async def root():
-    return {"message": "Welcome to my API!"}
+    return {"message": "Welcome to my API!!"}
