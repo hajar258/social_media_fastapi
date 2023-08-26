@@ -5,7 +5,8 @@ autopep8==2.0.2
 bcrypt==4.0.1
 certifi==2023.7.22
 cffi==1.15.1
-click==8.1.6alembic==1.11.3
+click==8.1.6
+alembic==1.11.3
 annotated-types==0.5.0
 anyio==3.7.1
 astropy==5.3.2
